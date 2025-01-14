@@ -17,7 +17,7 @@ const secondPromise = new Promise((resolve) => {
 
 const thirdPromise = new Promise((resolve) => {
   let leftClick = false;
-  let rightCliсk = false;
+  let rightClick = false;
 
   body.addEventListener('mousedown', (e) => {
     if (e.button === 0) {
@@ -27,31 +27,31 @@ const thirdPromise = new Promise((resolve) => {
 
     if (e.button === 2) {
       e.preventDefault();
-      rightCliсk = true;
-      setTimeout(() => (rightCliсk = false), 3000);
+      rightClick = true;
+      setTimeout(() => (rightClick = false), 3000);
     }
 
-    if (leftClick && rightCliсk) {
+    if (leftClick && rightClick) {
       resolve('Third promise was resolved');
       leftClick = false;
-      rightCliсk = false;
+      rightClick = false;
     }
   });
 });
 
-const creatDiv = (massage, className, dataQA) => {
+const createDiv = (message, className, dataQA) => {
   const div = document.createElement('div');
 
   div.classList.add(className);
   div.setAttribute('data-qa', dataQA);
-  div.textContent = massage;
+  div.textContent = message;
   body.appendChild(div);
 };
 
 firstPromise
-  .then((massage) => creatDiv(massage, 'success', 'notification'))
-  .catch((erorr) => creatDiv(erorr, 'error', 'notification'));
+  .then((message) => createDiv(message, 'success', 'notification'))
+  .catch((error) => createDiv(error, 'error', 'notification'));
 
-secondPromise.then((massage) => creatDiv(massage, 'success', 'notification'));
+secondPromise.then((message) => createDiv(message, 'success', 'notification'));
 
-thirdPromise.then((massage) => creatDiv(massage, 'success', 'notification'));
+thirdPromise.then((message) => createDiv(message, 'success', 'notification'));
